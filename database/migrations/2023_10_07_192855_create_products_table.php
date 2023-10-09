@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sku', 20)->unique();
             $table->string('model', 120);
             $table->integer('quantity');
+            $table->json('images')->nullable();
 
             $table->foreignUuid('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->foreignUuid('brand_id')->nullable()->constrained('brands')->nullOnDelete();

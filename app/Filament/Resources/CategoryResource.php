@@ -38,6 +38,8 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginationPageOptions([5, 10, 25])
+            ->defaultPaginationPageOption(5)
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
@@ -99,6 +101,7 @@ class CategoryResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
+            ->orderBy('created_at', 'desc')
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
